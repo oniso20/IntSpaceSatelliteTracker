@@ -10,8 +10,8 @@ const marker = L.marker([0, 0], {icon: myIcon}).addTo(myMap);
 const attribution =
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
-      const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-      const tiles = L.tileLayer(tileUrl, { attribution });
+      const TITLE_URL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+      const tiles = L.tileLayer(TITLE_URL, { attribution });
       
       tiles.addTo(myMap);
 
