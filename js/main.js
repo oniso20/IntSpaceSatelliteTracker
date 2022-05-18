@@ -1,14 +1,8 @@
 
 const myMap = L.map('map').setView([0, 0], 1);
-const circle = L.circle([0, 0], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 500
-}).addTo(myMap);
 const myIcon = L.icon({
-    iconUrl: 'international-space-station.jpg',
-    iconSize: [50, 32],
+    iconUrl: 'iss.png',
+    iconSize: [80, 52],
     iconAnchor: [25, 16],
 });
 const marker = L.marker([0, 0], {icon: myIcon}).addTo(myMap);
@@ -24,6 +18,11 @@ const attribution =
 
 const API_URL = 'https://api.wheretheiss.at/v1/satellites/25544'
 
+
+// To avoid view updates when ISS moves use this variable (firstTime)
+
+let firstTime = true;
+
 async function getISS() {
     const response = await fetch(API_URL);
     const data = await response.json();
@@ -35,13 +34,20 @@ async function getISS() {
 
     //This sets the value of the marker
     marker.setLatLng([latitude, longitude])
-    circle.setLatLng([latitude, longitude])
 
-    document.getElementById('lat').innerText = latitude
-    document.getElementById('lon').innerText = longitude
-    document.getElementById('vis').innerText = visibility
+    // continue firstTime code action
+    if (firstTime) {
+        myMap.setView([latitude, longitude], 5);
+        firstTime = false;
+    }
+
+    document.getElementById('lat').innerText = latitude.toFixed(3)
+    document.getElementById('lon').innerText = longitude.toFixed(3)
+    document.getElementById('vis').innerText = visibility.toUpperCase()
 }
 getISS()
+
+setInterval(getISS, 1000)
 
 
 
