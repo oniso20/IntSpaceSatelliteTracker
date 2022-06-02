@@ -48,26 +48,3 @@ async function getISS() {
 getISS()
 
 setInterval(getISS, 1000)
-
-
-
-
-// catchRainbow ()
-// //Adding .then as a check if I got the data & .catch to check for error
-//   .then(response => {
-//     console.log('Working')
-//   })
-
-//   .catch(error => {
-//     console.log(`error! ${error}`)
-//   })
-
-// async function catchRainbow() {
-//   const response = await fetch('rainbow.jpg')
-//   const blob = await response.blob()
-//   document.getElementById('rainbow').src = URL.createObjectURL(blob)
-// }
-
-// Website - https://wheretheiss.at/w/developer
-
-//https://leafletjs.com/
